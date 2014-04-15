@@ -1,0 +1,8 @@
+<div class="home-search">
+  <h1 style="text-align: center; font-family: Impact, Charcoal, sans-serif">Cartridge Search: </h1>
+  <%= form_tag({controller: "cartridge", action: "search"}, method: "get", class: "inline-form")  do %>
+    <%= text_field_tag :text, nil, {class: "search-box", placeholder: "Search"} %>
+    <%= submit_tag "Search", class: "btn btn-primary search-button" %>
+  <% end %>
+  <%= image_tag "magifying_glass.jpg", class: "magnifying-glass-img" %>
+</div>

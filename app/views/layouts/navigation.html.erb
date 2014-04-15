@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CartridgeFinder</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="<%= root_path %>">Cartridge Finder</a>
+      </div>
+      <%= form_tag({controller: "cartridge", action: "search"}, method: "get", class: "navbar-form navbar-left navbar-search")  do %>
+        <%= text_field_tag :text, nil, {class: "navbar-search-box", placeholder: "Search"} %>
+        <%= submit_tag "Search", class: "btn btn-primary search-button" %>
+      <% end %>
+
+      <%= form_tag({controller: "cartridge", action: "import"}, multipart: true, class: "navbar-form navbar-right navbar-import")  do %>
+        <%= file_field_tag 'datafile', class: "import-field" %>
+        <%= submit_tag "Import", class: "btn btn-primary import-button" %>
+      <% end %>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

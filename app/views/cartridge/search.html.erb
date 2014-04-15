@@ -1,0 +1,15 @@
+<% if @search_results.length == 0 %>
+  <h3>No search results found</h3>
+<% end %>
+
+<% @search_results.each do |result| %>
+  <div class="col-md-4 found-record">
+    <h3 class="found-header"><%= result[:cartridge] %></h3>
+    <div><strong>Page:</strong> <%= result[:page] %></div>
+    <div><strong>Tags:</strong> 
+      <% result[:tags].each do |tag| %>
+        <span class="label label-primary"><%= tag %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+form.navbar-form.navbar-left.navbar-search {
+  margin-left: 20px;
+}
+
+input.navbar-search-box {
+  height: 32px;
+  border-radius: 6px;
+}
+
+input.import-field {
+  float: left;
+}
+
+form.navbar-form.navbar-right.navbar-import {
+  margin-top: 11px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+input.import-button {
+  float: right;
+  padding: 3px;
+}
