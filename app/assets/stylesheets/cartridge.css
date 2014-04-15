@@ -8,6 +8,8 @@ div.found-record {
   border: 1px solid #CCC;
   border-radius: 6px;
   padding: 0px 15px 15px 15px;
+  margin-left: 10%;
+  margin-top: 5px;
 }
 
 h3.found-header {

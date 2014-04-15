@@ -28,6 +28,21 @@ class CartridgeController < ApplicationController
       file.write(uploaded_file.read)
     end
 
+    File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines.each do |line|
+      parsed_line = line.strip.split(",")
+      if parsed_line.size == 3
+        cp = CartridgePage.new({page_num: parsed_line[1]})
+        c  = Cartridge.new({name: parsed_line[0]})
+        parsed_line[2].split(";").each do |tag|
+          pt = PageTag.find_or_create_by name: tag
+          cp.page_tags.push pt
+        end
+        cp.cartridge = c
+        cp.save
+        c.save
+      end
+    end
+
     render json: File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines
   end
 end
