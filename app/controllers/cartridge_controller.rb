@@ -14,7 +14,7 @@ class CartridgeController < ApplicationController
   end
 
   def search
-    cartridge_pages = CartridgePage.joins(:page_tags).where(page_tags: {name: params[:text]})
+    cartridge_pages = CartridgePage.joins(:page_tags).joins(:cartridge).where(page_tags: {name: params[:text]}).order("cartridges.name, page_num")
     @search_results = []
 
     @search_results = cartridge_pages.inject([]) do |memo, cp|
@@ -31,10 +31,10 @@ class CartridgeController < ApplicationController
     File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines.each do |line|
       parsed_line = line.strip.split(",")
       if parsed_line.size == 3
-        cp = CartridgePage.new({page_num: parsed_line[1]})
-        c  = Cartridge.new({name: parsed_line[0]})
+        cp = CartridgePage.find_or_create_by page_num: parsed_line[1]
+        c  = Cartridge.find_or_create_by name: parsed_line[0]
         parsed_line[2].split(";").each do |tag|
-          pt = PageTag.find_or_create_by name: tag
+          pt = PageTag.find_or_create_by name: tag.strip
           cp.page_tags.push pt
         end
         cp.cartridge = c
