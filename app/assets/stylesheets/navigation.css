@@ -1,3 +1,7 @@
+nav.navbar.navbar-default {
+  margin: 5px 10px 0px 10px;
+}
+
 form.navbar-form.navbar-left.navbar-search {
   margin-left: 20px;
 }

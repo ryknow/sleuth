@@ -2,14 +2,27 @@
   <h3>No search results found</h3>
 <% end %>
 
-<% @search_results.each do |result| %>
-  <div class="col-md-4 found-record">
-    <h3 class="found-header"><%= result[:cartridge] %></h3>
-    <div><strong>Page:</strong> <%= result[:page] %></div>
-    <div><strong>Tags:</strong> 
-      <% result[:tags].each do |tag| %>
-        <span class="label label-primary"><%= tag %></span>
+<% @search_results.each do |key, value| %>
+  <div class="cartridge">
+    <h3><%= key %></h3>
+    <hr />
+      <% value.each_with_index do |val, index| %>
+        <% if (index + 1) % 2 != 0 %>
+          <div class="row">
+        <% end %>
+          <div class="col-md-6">
+            <% val[:tags].each do |tag| %>
+            <div class="label label-default"><%= tag %></div>
+            <% end %>
+            <% if key == "Create A Critter" %>
+              <%= image_tag key.gsub(" ", "") + '_page' + val[:page].to_s + '.PNG', class: "page-img" %>
+            <% else %>
+              <%= image_tag key.gsub(" ", "") + '_page' + val[:page].to_s + '.JPG', class: "page-img" %>
+            <% end %>
+          </div>
+        <% if (index + 1) % 2 == 0 %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-  </div>
 <% end %>

@@ -15,11 +15,15 @@ class CartridgeController < ApplicationController
 
   def search
     cartridge_pages = CartridgePage.joins(:page_tags).joins(:cartridge).where(page_tags: {name: params[:text]}).order("cartridges.name, page_num")
-    @search_results = []
 
-    @search_results = cartridge_pages.inject([]) do |memo, cp|
-      memo << { cartridge: cp.cartridge.name, page: cp.page_num, tags: cp.page_tags.map(&:name) }
+    @search_results = cartridge_pages.inject({}) do |memo, cp|
+      memo[cp.cartridge.name] ||= []
+      unless memo[cp.cartridge.name].include?({ page: cp.page_num, tags: cp.page_tags.map(&:name) })
+        memo[cp.cartridge.name].push({ page: cp.page_num, tags: cp.page_tags.map(&:name) })
+      end
+      memo
     end
+    @search_results
   end
 
   def import
@@ -31,8 +35,9 @@ class CartridgeController < ApplicationController
     File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines.each do |line|
       parsed_line = line.strip.split(",")
       if parsed_line.size == 3
-        cp = CartridgePage.find_or_create_by page_num: parsed_line[1]
         c  = Cartridge.find_or_create_by name: parsed_line[0]
+        cp = CartridgePage.find_or_create_by_page_num_and_cartridge_id(parsed_line[1], c.id)
+        
         parsed_line[2].split(";").each do |tag|
           pt = PageTag.find_or_create_by name: tag.strip
           cp.page_tags.push pt

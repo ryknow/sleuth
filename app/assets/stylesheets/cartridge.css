@@ -3,16 +3,47 @@
   They will automatically be included in application.css.
 */
 
-div.found-record {
-  background-color: #EEE;
-  border: 1px solid #CCC;
-  border-radius: 6px;
-  padding: 0px 15px 15px 15px;
-  margin-left: 10%;
-  margin-top: 5px;
+div.cartridge > h3 {
+  font-size: 3em;
 }
 
-h3.found-header {
-  border-bottom: 1px solid black;
-  padding: 2px;
+div.cartridge > hr {
+  border: none;
+  background-color: #CCC;
+  height: 5px;
+  margin-top: 0px;
+}
+
+div.page-container {
+  display: inline-flex;
+}
+
+.page-img {
+  width: 100%;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  margin-top: 25px;
+}
+
+div.page-num-container {
+  background-color: forestgreen;
+  border-radius: 6px;
+  border: 2px solid #AAA;
+  box-shadow: 5px 7px 5px #888;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  margin: 10px;
+}
+
+span.page-number {
+  font-size: 30px;
+  color: #FFF;
+  font-weight: bold;
+}
+
+span.page-tags {
+  margin-top: 8px;
+  margin-left: 25px;
+  width: 80%;
 }
