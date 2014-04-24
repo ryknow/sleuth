@@ -33,18 +33,22 @@ class CartridgeController < ApplicationController
     end
 
     File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines.each do |line|
-      parsed_line = line.strip.split(",")
-      if parsed_line.size == 3
-        c  = Cartridge.find_or_create_by name: parsed_line[0]
-        cp = CartridgePage.find_or_create_by_page_num_and_cartridge_id(parsed_line[1], c.id)
-        
-        parsed_line[2].split(";").each do |tag|
-          pt = PageTag.find_or_create_by name: tag.strip
-          cp.page_tags.push pt
+      begin
+        parsed_line = line.strip.split(",")
+        if parsed_line.size == 3
+          c  = Cartridge.find_or_create_by name: parsed_line[0]
+          cp = CartridgePage.find_or_create_by_page_num_and_cartridge_id(parsed_line[1], c.id)
+          
+          parsed_line[2].split(";").each do |tag|
+            pt = PageTag.find_or_create_by name: tag.strip
+            cp.page_tags.push pt
+          end
+          cp.cartridge = c
+          cp.save
+          c.save
         end
-        cp.cartridge = c
-        cp.save
-        c.save
+      rescue 
+        Rails.logger.error "Error parsing line #{line}"
       end
     end
 

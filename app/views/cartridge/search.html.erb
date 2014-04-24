@@ -14,10 +14,12 @@
             <% val[:tags].each do |tag| %>
             <div class="label label-default"><%= tag %></div>
             <% end %>
-            <% if key == "Create A Critter" %>
-              <%= image_tag key.gsub(" ", "") + '_page' + val[:page].to_s + '.PNG', class: "page-img" %>
+            <% pngs = ["Create A Critter", "Ashlyns Alphabet", "Best Of Pixar", "Cricut Essentials"] %>
+            <% if pngs.include? key %>
+            
+              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.PNG', class: "page-img") %>
             <% else %>
-              <%= image_tag key.gsub(" ", "") + '_page' + val[:page].to_s + '.JPG', class: "page-img" %>
+              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.JPG', class: "page-img") %>
             <% end %>
           </div>
         <% if (index + 1) % 2 == 0 %>
