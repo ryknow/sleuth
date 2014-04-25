@@ -2,17 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
 
-div.home-search {
-  width: 34%;
-  height: 100px;
+h1.header {
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+}
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 40%;
+div.list-cartridges {
+  border-right: 2px solid #AAA;
+  padding: 10px;
+}
 
-  margin: auto;
+div.upload-file {
+  padding: 10px;
+}
+
+div.list-cartridges:hover {
+  background-color: lightblue;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+div.upload-file:hover {
+  background-color: lightblue;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+h2.featurette-heading {
+  float: left;
+}
+
+div.home-search > h2, div.home-search > form {
+  display: inline-block;
+}
+
+div.home-search > form {
+  margin-left: 2%;
 }
 
 input.search-box {
@@ -26,6 +51,11 @@ input.search-button {
 }
 
 img.magnifying-glass-img {
-  height: 250px;
+  height: 150px;
   margin-top: 5%;
+}
+
+span.list-icon, span.upload-icon {
+  font-size: 5em;
+  float: right;
 }
