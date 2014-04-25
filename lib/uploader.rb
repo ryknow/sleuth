@@ -31,6 +31,6 @@ module Sleuth
         c.save
       end
     end
-    
+
   end
 end

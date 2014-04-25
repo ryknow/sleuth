@@ -9,9 +9,11 @@
     <div class="col-md-6">
       <% pngs = ["Create A Critter", "Ashlyns Alphabet", "Best Of Pixar", "Cricut Essentials"] %>
       <% if pngs.include? value[:name] %>
-        <%= image_tag(value[:name].gsub(" ", "") + '_FrontCover.PNG', class: "page-img") %>
+        <%= link_to image_tag(value[:name].gsub(" ", "") + '_FrontCover.PNG', class: "page-img"),
+                    cartridge_path(value[:id]) %>
       <% else %>
-        <%= image_tag(value[:name].gsub(" ", "") + '_FrontCover.JPG', class: "page-img") %>
+        <%= link_to image_tag(value[:name].gsub(" ", "") + '_FrontCover.JPG', class: "page-img"),
+                    cartridge_path(value[:id])%>
       <% end %>
     </div>
   <% if (index + 1) % 2 == 0 %>
