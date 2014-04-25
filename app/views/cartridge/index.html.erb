@@ -1,0 +1,20 @@
+<% if @cartridges.length == 0 %>
+  <h3>No search results found</h3>
+<% end %>
+
+<% @cartridges.each_with_index do |value, index| %>
+  <% if (index + 1) % 2 != 0 %>
+    <div class="row">
+  <% end %>
+    <div class="col-md-6">
+      <% pngs = ["Create A Critter", "Ashlyns Alphabet", "Best Of Pixar", "Cricut Essentials"] %>
+      <% if pngs.include? value[:name] %>
+        <%= image_tag(value[:name].gsub(" ", "") + '_FrontCover.PNG', class: "page-img") %>
+      <% else %>
+        <%= image_tag(value[:name].gsub(" ", "") + '_FrontCover.JPG', class: "page-img") %>
+      <% end %>
+    </div>
+  <% if (index + 1) % 2 == 0 %>
+    </div>
+  <% end %>
+<% end %>

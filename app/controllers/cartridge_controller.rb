@@ -3,7 +3,7 @@ class CartridgeController < ApplicationController
   layout "navigation"
 
   def index
-    render json: Cartridge.all.to_json
+    @cartridges = Cartridge.all
   end
 
   def show
@@ -29,7 +29,7 @@ class CartridgeController < ApplicationController
 
   def import
     uploaded_file = params[:datafile]
-<<<<<<< Updated upstream
+
     File.open(Rails.root.join('public', 'uploads', params[:datafile].original_filename), 'wb') do |file|
       file.write(uploaded_file.read)
     end
@@ -40,7 +40,7 @@ class CartridgeController < ApplicationController
         if parsed_line.size == 3
           c  = Cartridge.find_or_create_by name: parsed_line[0]
           cp = CartridgePage.find_or_create_by_page_num_and_cartridge_id(parsed_line[1], c.id)
-          
+
           parsed_line[2].split(";").each do |tag|
             pt = PageTag.find_or_create_by name: tag.strip
             cp.page_tags.push pt
@@ -49,14 +49,10 @@ class CartridgeController < ApplicationController
           cp.save
           c.save
         end
-      rescue 
+      rescue
         Rails.logger.error "Error parsing line #{line}"
       end
     end
-
-=======
-    
->>>>>>> Stashed changes
     render json: File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines
   end
 end
