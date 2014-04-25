@@ -14,7 +14,8 @@ class CartridgeController < ApplicationController
   end
 
   def search
-    cartridge_pages = CartridgePage.joins(:page_tags).joins(:cartridge).where(page_tags: {name: params[:text]}).order("cartridges.name, page_num")
+    cartridge_pages = CartridgePage.joins(:page_tags).joins(:cartridge).
+      where(page_tags: {name: params[:text]}).order("cartridges.name, page_num")
 
     @search_results = cartridge_pages.inject({}) do |memo, cp|
       memo[cp.cartridge.name] ||= []
@@ -28,6 +29,7 @@ class CartridgeController < ApplicationController
 
   def import
     uploaded_file = params[:datafile]
+<<<<<<< Updated upstream
     File.open(Rails.root.join('public', 'uploads', params[:datafile].original_filename), 'wb') do |file|
       file.write(uploaded_file.read)
     end
@@ -52,6 +54,9 @@ class CartridgeController < ApplicationController
       end
     end
 
+=======
+    
+>>>>>>> Stashed changes
     render json: File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename)).readlines
   end
 end
