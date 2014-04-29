@@ -17,9 +17,11 @@
             <% pngs = ["Create A Critter", "Ashlyns Alphabet", "Best Of Pixar", "Cricut Essentials"] %>
             <% if pngs.include? key %>
             
-              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.PNG', class: "page-img") %>
+              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.PNG', 
+                            class: "page-img", title: val[:page].to_s) %>
             <% else %>
-              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.JPG', class: "page-img") %>
+              <%= image_tag(key.gsub(" ", "") + '_page' + val[:page].to_s + '.JPG', 
+                            class: "page-img", title: val[:page].to_s) %>
             <% end %>
           </div>
         <% if (index + 1) % 2 == 0 %>
