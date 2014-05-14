@@ -1,6 +1,6 @@
 <div class="row header-section">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="header">Cartridge Sleuth</h2>
+  <div class="col-md-7 col-md-offset-2">
+    <h1 class="header">Cartridge Sleuth</h1>
     <%= image_tag "magifying_glass.jpg", class: "magnifying-glass-img" %>
   </div>
 </div>
@@ -28,7 +28,7 @@
     </div>
   </a>
 
-  <div class="col-md-4 upload-file">
+  <div class="col-md-4 upload-file" data-toggle="modal" data-target="#upload-modal">
     <h2 class="featurette-heading">
       Upload CSV File
     </h2>
@@ -36,3 +36,30 @@
   </div>
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Upload CSV File</h4>
+      </div>
+      <div class="modal-body">
+        <button class="browse-button btn btn-primary">Browse</button>
+        <label id="filename"></label>
+        <input id="file-input" class="hidden" type="file" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("button.browse-button").on("click", function(ev) { $("#file-input").click(); });
+  $("label#filename").on("click", function(ev) { $("#file-input").click(); });
+  $("#file-input").on("change", function(ev) { $("#filename").html($(ev.currentTarget).val()); });
+</script>
