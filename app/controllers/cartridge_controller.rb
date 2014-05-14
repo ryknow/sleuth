@@ -1,4 +1,5 @@
 class CartridgeController < ApplicationController
+  require 'uploader'
   respond_to :json
   layout "navigation"
 
