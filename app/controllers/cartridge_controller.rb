@@ -1,5 +1,4 @@
 class CartridgeController < ApplicationController
-  include Sleuth
   respond_to :json
   layout "navigation"
 
@@ -29,7 +28,7 @@ class CartridgeController < ApplicationController
   end
 
   def import
-    Uploader.new(params[:datafile]).write.save
+    Sleuth::Uploader.new(params[:datafile]).write.save
 
     redirect_to action: "index"
   end
