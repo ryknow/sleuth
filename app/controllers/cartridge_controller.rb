@@ -1,5 +1,5 @@
 class CartridgeController < ApplicationController
-  require 'uploader'
+  include Sleuth
   respond_to :json
   layout "navigation"
 
