@@ -14,7 +14,7 @@ module Sleuth
     end
 
     def save
-      File.open(Rails.root.join(UPLOAD_DIR, @uploaded_file.original_filename)).readlines.each do |file|
+      File.open(Rails.root.join(UPLOAD_DIR, @upload_file.original_filename)).readlines.each do |file|
         parsed_line = line.strip.split(",")
 
         if parsed_line.size == 3
