@@ -1,7 +1,7 @@
 <div class="cartridge">
   <h3><%= @cartridge.name %></h3>
   <hr />
-    <% @cartridge.cartridge_pages.each_with_index do |val, index| %>
+    <% @cartridge.cartridge_pages.sort.each_with_index do |val, index| %>
       <% if (index + 1) % 2 != 0 %>
         <div class="row">
       <% end %>
