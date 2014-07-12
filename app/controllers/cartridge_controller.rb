@@ -30,7 +30,8 @@ class CartridgeController < ApplicationController
 
   def import
     uploader = Sleuth::Uploader.new(params[:datafile])
-    uploader.write.save
+    uploader.write
+    uploader.save
 
     redirect_to action: "index"
   end
