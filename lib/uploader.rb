@@ -3,6 +3,7 @@ module Sleuth
     UPLOAD_DIR = "public/uploads"
 
     def initialize upload_file
+        FileUtils.mkdir_p(UPLOAD_DIR) unless File.directory?(UPLOAD_DIR)
         @upload_file = upload_file
     end
 
