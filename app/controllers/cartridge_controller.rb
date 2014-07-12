@@ -1,4 +1,5 @@
 class CartridgeController < ApplicationController
+  require "#{Rails.root}/lib/uploader"
   respond_to :json
   layout "navigation"
 
